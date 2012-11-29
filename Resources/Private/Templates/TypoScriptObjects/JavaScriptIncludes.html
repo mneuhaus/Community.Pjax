@@ -1,0 +1,28 @@
+<f:security.ifAccess resource="TYPO3_Neos_Backend_BackendController">
+	<f:else>
+		<f:if condition="{includeJQuery}">
+			<script src="{f:uri.resource(path:'Libraries/jquery/jquery-1.7.2.js', package: 'Kitsunet.Neos.Pjax')}" data-main="{f:uri.resource(path:'Libraries/jquery/jquery-1.7.2.js', package: 'Kitsunet.Neos.Pjax')}"></script>
+		</f:if>
+		<script src="{f:uri.resource(path:'Libraries/jquery-pjax/jquery.pjax.js', package: 'Kitsunet.Neos.Pjax')}" data-main="{f:uri.resource(path:'Libraries/jquery-pjax/jquery-1.7.2.js', package: 'Kitsunet.Neos.Pjax')}"></script>
+		<script type="text/javascript"><![CDATA[
+
+		(function ($) {
+			$(document).ready(function () {
+				$(document).delegate('a', 'click', function (e) {
+					var $this = $(this);
+
+					if (!$this.attr('href').match(/[a-z]*:\/\//)) {
+						$.pjax({
+							url: $this.attr('href'),
+							container: '.t3-reloadable-content:first',
+							fragment:'.t3-reloadable-content:first',
+							timeout: 2000
+						});
+						e.preventDefault();
+					}
+				});
+			});
+		})(jQuery);
+		]]></script>
+	</f:else>
+</f:security.ifAccess>

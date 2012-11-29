@@ -1,0 +1,10 @@
+prototype(TYPO3.Neos.ContentTypes:Page) {
+	headerData.CommunityPjax = TYPO3.TypoScript:Template
+	headerData.CommunityPjax {
+		@position = 'end 99'
+		templatePath = 'resource://Community.Pjax/Private/Templates/TypoScriptObjects/JavaScriptIncludes.html'
+		includeJQuery = FALSE
+	}
+}
+
+prototype(TYPO3.Neos:Page) < prototype(TYPO3.Neos.ContentTypes:Page)
